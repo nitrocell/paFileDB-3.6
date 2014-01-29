@@ -1,0 +1,141 @@
+TABLE, TEXTAREA, INPUT { 
+	font: 10px Verdana; color:#000000;
+	background-color: #FFFFFF
+}
+span.largefilename {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+DIV.quote {
+    border: 1px solid black;
+    font: 9px;
+    width: 95%;
+}
+
+TABLE.border {
+     border-color:#000000;
+     border-collapse:collapse;	 
+}
+
+TABLE.dashed {
+     border: 1px dashed #000000;
+}
+
+td.questionoptions {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 10px;
+}
+
+tr.row1 {
+    background-color: #ffffff;
+}
+
+tr.row2 {
+    background-color: #ffffff ;
+}
+
+TD.header {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+td.lightheader{
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+tr.sectionheader, td.sectionheader {
+    background-image: url(./images/row_bg.gif);
+    background-color: #a30404;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+tr.fileheader, td.fileheader {
+    background-image: url(./images/row_bg.gif);
+    background-color: #a30404;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+span.small {
+    font-size: 9px;
+    font-weight: normal;
+}
+
+BODY { 
+	font: 10px Verdana; color:#000000;
+	text-shadow:1;
+} 
+
+.forminput {
+	background-color:#FFFFFF;
+	border: 1px #000000 solid;
+	color: #FF0000;
+	font-family:verdana;
+	font-size:10px;
+	padding-left:2px;
+	padding-right:2px;
+}
+
+.textinput {
+	background-color:#FFFFFF;
+	border: 1px #000000 solid;
+	color: #000000;
+	font-family:verdana;
+	font-size:11px;
+	padding:2px;
+	width:95%;
+}
+
+a:link {
+	color:#a30404;
+	text-decoration:none;
+	font-weight:none;
+}
+
+a:active {
+	color:#a30404;
+	text-decoration:none;
+	font-weight:none;
+}
+
+a:visited {
+	color:#a30404;
+	text-decoration:none;
+	font-weight:none;
+}
+
+a:hover {
+    color: #000000;
+}
+a.edit:link, a.edit:active, a.edit:visited {
+font-size: 10px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.edit:hover {
+    font-size:10px;
+    color: #CCCCCC;
+    text-decoration: underline;
+}
+
+/* New in 3.6 */
+tr.commentheader, td.commentheader {
+    background-image: url(./images/comment_bg.gif);
+    background-color: #a30404;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+hr.comment {
+	color: #000000;
+	background-color: #000000;
+	height: 1px;
+	border: 0px;
+}

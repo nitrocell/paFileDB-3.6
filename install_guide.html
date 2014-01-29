@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>paFileDB Installation Guide</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+	BODY, TABLE, P {
+		font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+		font-size: 10px;
+		color: #000000; 
+	}
+
+	A:LINK, A:VISITED, A:ACTIVE {
+		font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+		font-size : 10px;
+		color : #D14343;
+		text-decoration: underline;
+	}
+	A:HOVER {
+		font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+		font-size : 10px;
+		color : #405BA1;
+		text-decoration: underline;
+	}
+	span.caption {
+		font-size:9px;
+		font-weight:bold;
+	}
+</style>
+</head>
+
+<body>
+<div align="center">
+  <p><span style="font-size:20px">paFileDB 3.6  Installation Guide</span></p>
+  <p align="left">This guide will help walk you through the installation of paFileDB.</p>
+  <p align="left"><strong>Before you begin</strong><br />
+    In order to install paFileDB, make sure you have the following:<br />
+    -A server with PHP and MySQL support<br />
+    -MySQL connection info (obtain this from your host)<br />
+    -An FTP program to upload files to your server</p>
+  <p align="left">Installing paFileDB is very simple.  Under 
+    normal circumstances and with a broadband connection, installaton shouldn't 
+    take longer than about 10 minutes.</p>
+  <p align="left"><strong>Installation</strong><br />
+    1. Unzip the file you downloaded from the <a href="http://www.phparena.net/pafiledb">paFileDB homepage</a>. Chances 
+    are that if you're reading this, you've already done that.  </p>
+  <p align="left">2. Open the &quot;upload&quot; folder, then open &quot;includes&quot; and then open the file &quot;config.php&quot;. You will need to edit that file to reflect your MySQL server information. You will need to edit the server, username, password and the database name. Editing the prefix is optional, and only necessary if installing more than one copy of paFileDB in the same database. </p>
+  <p align="left">3. Connect to your server via FTP. Then, make a folder on your 
+    server where you would like paFileDB installed at. For example, if you 
+    create a folder called &quot;pafiledb&quot;, you will probably be accessing 
+    your file database by visiting http://www.yourdomain.com/pafiledb </p>
+  <p align="left">4. Open up the &quot;upload&quot; folder from the file 
+    you just unzipped. You will need to upload everything in that folder, <strong>except for the &quot;upgrade&quot; folder </strong>. Uploading 
+    is a bit different for each FTP program, check it's manual for more details.
+  
+  <p align="left">5. If you use a *NIX (Linux, Unix, OSX and a couple others) 
+    server, you will need to CHMOD a couple directories. CHMODing is 
+    done via your FTP program, you will need to check it's manual for more details 
+    on doing this. The following files and folders need to be CHMODded to the values given:</p>
+  <div align="left">
+    <ul>
+      <li>uploads (directory), 777</li>
+      <li>skins/default/compile (directory), 777</li>
+    </ul>
+  </div>
+  <p align="left">6. Now that everything is uploaded, you will need to run the installer
+    in your browser. This can be done by visiting http://www.yourdomain.com/pafiledb/install, 
+    where yourdomain.com is your domain name, and pafiledb is the path to paFileDB. 
+    Once you've got the installer up, it will take you through everything. </p>
+  <p align="left">7. Congratulations! You're almost done. Just delete the &quot;install&quot; directory
+    from your server immediatley because it can be a security risk by leaving 
+  it there.</p>
+  <p align="left">8. Once you have deleted the &quot;install&quot; directory, login to your admin center and modify paFileDB's settings to suit your needs.</p>
+  <p align="left">If you have any problems with the installation of paFileDB, please visit our <a href="http://www.phparena.net/support.php" target="_blank">Support Page</a>. </p>
+</div>
+</body>
+</html>

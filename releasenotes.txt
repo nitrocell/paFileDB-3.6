@@ -1,0 +1,156 @@
+Changes for 3.6
+-----------------
+Changed files:
+Nearly every file has changed due to the switch to ADOdb. I won't bother listing all of them.
+
+[ENHANCEMENT] Switched the database abstraction layer to ADOdb. This allows for more efficiency and unlike the previous driver, virtually any type of query is supported, allowing us to combine several queries into one
+[ENHANCEMENT] Slightly more useful and better-looking error pages when there's a database error
+[ENHANCEMENT] Certain file extensions can be banned from being upload for increased security (see config.php for more details)
+[ENHANCEMENT] Settings page separated into collapsable sections
+[ENHANCEMENT] Added ability to clear e-mail log, no more deleting individually
+[ENHANCEMENT] HTML can be used in the following file fields: Short Description, Long Description, Creator and custom fields
+[ENHANCEMENT] "maxlength" attribute added to fields where the field length is limited by the MySQL field length
+[ENHANCEMENT] Added ability to recount all categories instead of having to do each individually
+[ENHANCEMENT] More options when searching
+[ENHANCEMENT/FEATURE] Added ability to change all category orders on the manage categories page. Subcategories can now be ordered
+[FEATURE] AJAX has been added to various parts of paFileDB (Rating files and posting comments)
+[FEATURE] Unlimited subcategories are now possible (using unlimited subcategory mod from paMods)
+[FEATURE] "Quick Download" link on the View Category page allows users to skip the View File page and go directly to the download (or license or mirror selection). 
+[FEATURE] Database statistics are back from 3.1!
+[FEATURE] Users can set their own sort settings on Category View page. Settings are saved to cookie
+[FEATURE] Users can register, and paFileDB can be set to be viewable by registered users only.
+[FEATURE] Ability to post comments for files
+[FEATURE] WYSIWYG HTML editor for posting comments (can be disabled)
+[FEATURE] WYSIWYG HTML editor for editing license text
+[FEATURE] News feed in paFileDB admin center: Displays news regarding updates and patches
+[FEATURE] File tagging: Add tags to files and display all tags in a tag cloud on the main page
+
+DB Changes:
+ALTER TABLE `settings` ADD `sort_override` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `quickdl` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `dbstats` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `fromemail` VARCHAR( 50 ) NOT NULL ;
+ALTER TABLE `settings` ADD `validateemail` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `enable_comments` INT( 1 ) NOT NULL ;ALTER TABLE `settings` ADD `guest_comments` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `enable_registration` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `comments_perpage` INT( 3 ) NOT NULL ;
+ALTER TABLE `settings` ADD `require_registration` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `newest_news` INT( 30 ) NOT NULL ;
+ALTER TABLE `files` ADD `file_tags` TEXT NOT NULL ;
+ALTER TABLE `settings` ADD `display_tags` INT( 1 ) NOT NULL ;
+ALTER TABLE `settings` ADD `tag_cloud` TEXT NOT NULL ;
+
+CREATE TABLE `users` (`user_userid` INT( 6 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,`user_username` VARCHAR( 25 ) NOT NULL ,`user_password` VARCHAR( 32 ) NOT NULL ,`user_email` VARCHAR( 50 ) NOT NULL ,`user_status` INT( 1 ) NOT NULL) ENGINE = MYISAM ;
+
+CREATE TABLE `comments` (`comment_id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,`comment_userid` INT( 6 ) NOT NULL ,`comment_fileid` INT( 6 ) NOT NULL ,`comment_time` INT( 20 ) NOT NULL ,`comment_visible` INT( 1 ) NOT NULL ,`comment_subject` VARCHAR( 150 ) NOT NULL ,
+`comment_ip` VARCHAR( 150 ) NOT NULL ,`comment_text` TEXT NOT NULL) ENGINE = MYISAM ;
+
+CREATE TABLE `adminnews` (  `date` int(30) NOT NULL default '0',  `subject` varchar(150) NOT NULL default '',  `text` text NOT NULL,  PRIMARY KEY  (`date`)) TYPE=MyISAM;
+
+Changes for 3.5.3
+-----------------
+Changed Files:
+/admin.php
+/index.php
+/includes/functions.php
+/includes/view.php
+/includes/email.php
+/includes/report.php
+/includes/license.php
+/includes/download.php
+/includes/admin/rebuilddrop.php
+/includes/admin/resetadminpass.php
+/includes/admin/settings.php
+/includes/admin/files.php
+/includes/admin/custom.php
+/includes/admin/categories.php
+/includes/db/mysql.php
+/includes/db/mysqli.php
+/includes/smarty/plugins/function.math.php
+/includes/smarty/plugins/modifier.regex_replace.php
+/includes/smarty/Config_File.class.php
+/includes/smarty/Smarty.class.php
+/includes/smarty/Smarty_Compiler.class.php
+/lang/english.conf
+/skins/default/templates/category.tpl
+/skins/default/templates/report.tpl
+/skins/default/templates/view.tpl
+/skins/default/templates/license.tpl
+/skins/default/templates/header.tpl
+/skins/default/templates/admin/menu.tpl
+/skins/default/templates/admin/rebuilddrop.tpl
+/skins/default/templates/admin/header.tpl
+/skins/default/templates/admin/log.tpl
+/skins/default/templates/admin/settings.tpl
+/skins/default/templates/admin/files.tpl
+
+[UPGRADE] Upgraded Smarty to the latest version
+[BUG FIX] Using commas in a custom field name would cause it to not be added
+[BUG FIX] Fixed dropdown bug where the category names weren't being fixed for the SQL driver causing failed updates.
+[BUG FIX] Made the xhtml_convert and reverse functions better compatible with foreign languages
+[BUG FIX] Warning: Invalid argument supplied for foreach() error when no categories in database
+[BUG FIX] Category table header displayed when there are no files in the database
+[BUG FIX] "I Disagree" not translated on the license page
+[ENHANCEMENT] Various enhancements to the installer and upgrader
+[ENHANCEMENT] Added enhancement in installer and upgrader to remove install and upgrade directories automatically.
+[ENHANCEMENT] Added fix so refreshing didn't damage install process.
+[ENHANCEMENT] paFileDB will use the default English entry for missing entries in outdated 3rd party language files
+[ENHANCEMENT] paFileDB's mail function now allows sending to multiple recipients (To prevent spam, the e-mail to friend feature does not allow multiple recipients, however, paFileDB's internal mail function, pafiledb_mail() does allow multiple recipients which may be useful for modders)
+[ENHANCEMENT] HTML charsets are set in the language file and no longer hard-coded, allowing more compatibility with foreign languages
+[FEATURE] Added rebuilddrop action to admin panel for easier rehashing of dropdown menus
+[FEATURE] Added resetadminpass action to admin panel (disabled by default) to reset default account password in case of loss.
+[FEATURE] Added in mysqli driver for public use
+[FEATURE] Ability to add mirrors for a file
+[FEATURE] Users can report broken links--reports will be e-mailed to admins
+
+DB Changes:
+ALTER TABLE `files` ADD `file_mirrors` TEXT NOT NULL AFTER `file_dlurl`;
+ALTER TABLE `settings` ADD `enable_report` INT( 1 ) NOT NULL;
+
+Changes for 3.5.2
+-----------------
+Changed Files:
+/index.php
+/admin.php
+/includes/view.php
+/includes/functions.php
+/includes/admin/files.php
+/includes/admin/categories.php
+/includes/smarty/plugins/function.toplist.php (Added)
+/skins/default/templates/admin/files.tpl
+
+[BUG FIX] Files that have not been downloaded had Dec 31, 1969 06:00 PM displayed as their last downloaded time. Now, it says "Never" (This is actually fixed in 3.5.2. The bug still showed up in 3.5.1)
+[BUG FIX] New lines would become <br /> in the Long Description textbox when editing a file
+[BUG FIX] Posticons are no longer displayed on a single row in IE6.
+[BUG FIX] Categories not showing up (rare bug, but hopefully fixed)
+[FEATURE] Add toplists in your templates (Please see http://phparena.net/faq/index.php?act=view&id=18 for instructions)
+
+Changes for 3.5.1
+-----------------
+Changed Files:
+/index.php
+/admin.php
+/includes/functions.php
+/includes/category.php
+/includes/viewall.php
+/includes/admin/files.php
+/includes/admin/categories.php
+/includes/admin/settings.php
+/lang/english.conf
+/skins/default/view.tpl
+/skins/default/admin/settings.tpl
+/skins/default/admin/files.tpl
+/skins/default/admins/categories.tpl
+/skins/default/category.tpl
+/skins/default/viewall.tpl
+/skins/default/redirect.tpl
+/skins/default/error.tpl
+
+
+[BUG FIX] index.html is included as a post icon and language file choice
+[BUG FIX] Ability to add files to no category
+[BUG FIX] Files that have not been downloaded had Dec 31, 1969 06:00 PM displayed as their last downloaded time. Now, it says "Never"
+[BUG FIX] Files and categories could be added with empty fields
+[FEATURE] The number of files to display on a page is now a setting
+[FEATURE] Ability to upload screenshots added
+[FEATURE] Ability to change category sorting options added
